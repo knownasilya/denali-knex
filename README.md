@@ -1,6 +1,6 @@
 # Denali Knex
 
-An awesome addon built on the Denali framework.
+:construction: A Denali ORM Adapter using Knex.js
 
 ## Usage
 
