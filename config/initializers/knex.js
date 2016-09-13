@@ -13,13 +13,9 @@ export default {
       container.register('orm-adapter:application', adapter);
     }
 
-    debugger;
-
     return resolve(() => {
-      debugger;
       return knex(config.knex);
     }).then((db) => {
-      debugger;
       adapter.db = db;
 
       let models = container.lookupAll('model');
@@ -32,10 +28,6 @@ export default {
 
       adapter.adapterModels = adapterModels;
       adapter.models = models;
-
-      forEach(adapterModels, (AdapterModel, type) => {
-        adapter.defineRelationships(models[type], AdapterModel);
-      });
 
       // Create tables for each model if they don't exist
       return createTables(db, adapterModels);

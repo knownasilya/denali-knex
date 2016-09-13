@@ -33,10 +33,6 @@ export default class KnexAdapter extends ORMAdapter {
 
   }
 
-  static defineRelationships(record, relationship) {
-
-  }
-
   static deleteRelationship(record, relationship) {
 
   }
