@@ -1,4 +1,4 @@
-import { resolve, fromNode } from 'bluebird';
+import { all, resolve, fromNode } from 'bluebird';
 import mapValues from 'lodash/mapValues';
 import forEach from 'lodash/forEach';
 import knex from 'knex';
@@ -39,13 +39,10 @@ export default {
 };
 
 function createTables(db, models) {
-  return db.schema.table('community_configs', function (table) {
-    table.integer('version');
-    table.json('settings');
-    table.text('piwik_site_id');
-    table.text('cartodb_api_key');
-    table.text('cartodb_account');
-    table.text('subtitle');
-    table.dropForeign('config_id');
-  });
+  return all(models.map(model => {
+    return db.schema.table(model.type, function (table) {
+      table.integer('column');
+      table.text('column2');
+    });
+  }));
 }
